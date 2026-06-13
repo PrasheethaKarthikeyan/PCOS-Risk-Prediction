@@ -4,8 +4,13 @@ import pandas as pd
 
 app = Flask(__name__)
 
-model = pickle.load(open("../model/pcos_model.pkl", "rb"))
+import os
+import pickle
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "model", "pcos_model.pkl")
+
+model = pickle.load(open(MODEL_PATH, "rb"))
 @app.route("/")
 def home():
     return render_template("index.html")
